@@ -1,0 +1,6 @@
+{
+  "name": "CallCoach AI",
+  "description": "Call center mock call simulator for de-escalation, retention, and customer service training with real-time AI feedback and manager analytics.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
