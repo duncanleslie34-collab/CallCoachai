@@ -19,6 +19,7 @@ import com.example.ui.screens.*
 import com.example.ui.theme.CallCoachTheme
 import com.example.ui.viewmodel.CallSessionViewModel
 import com.example.ui.viewmodel.HistoryViewModel
+import com.example.ui.viewmodel.LeaderboardViewModel
 import com.example.ui.viewmodel.ManagerViewModel
 import com.example.ui.viewmodel.ScenarioViewModel
 import com.example.util.configureAppCheck
@@ -31,7 +32,8 @@ enum class AppScreen {
     CREATE_MODULE,
     TECHNIQUES_GUIDE,
     HISTORY,
-    SESSION_DETAIL
+    SESSION_DETAIL,
+    LEADERBOARD
 }
 
 class MainActivity : ComponentActivity() {

@@ -33,7 +33,8 @@ import com.example.ui.viewmodel.ManagerViewModel
 fun ManagerAnalyticsScreen(
     managerViewModel: ManagerViewModel,
     onNavigateBack: () -> Unit,
-    onOpenSessionDetail: ((Long) -> Unit)? = null
+    onOpenSessionDetail: ((Long) -> Unit)? = null,
+    onOpenLeaderboard: (() -> Unit)? = null
 ) {
     val uiState by managerViewModel.uiState.collectAsStateWithLifecycle()
     val sessions by managerViewModel.sessions.collectAsStateWithLifecycle()
@@ -58,6 +59,16 @@ fun ManagerAnalyticsScreen(
                 navigationIcon = {
                     IconButton(onClick = onNavigateBack, modifier = Modifier.testTag("manager_back_button")) {
                         Icon(Icons.Default.ArrowBack, contentDescription = "Back")
+                    }
+                },
+                actions = {
+                    if (onOpenLeaderboard != null) {
+                        IconButton(
+                            onClick = onOpenLeaderboard,
+                            modifier = Modifier.testTag("manager_nav_leaderboard_button")
+                        ) {
+                            Icon(Icons.Default.Leaderboard, contentDescription = "Team Leaderboard", tint = Color(0xFFF59E0B))
+                        }
                     }
                 },
                 colors = TopAppBarDefaults.topAppBarColors(

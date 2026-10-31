@@ -34,7 +34,8 @@ fun ScenariosScreen(
     onOpenManagerDashboard: () -> Unit,
     onCreateCustomModule: () -> Unit,
     onOpenTechniquesGuide: () -> Unit,
-    onOpenHistory: () -> Unit
+    onOpenHistory: () -> Unit,
+    onOpenLeaderboard: () -> Unit
 ) {
     val scenarios by scenarioViewModel.scenarios.collectAsStateWithLifecycle()
     val filterState by scenarioViewModel.filterState.collectAsStateWithLifecycle()
@@ -61,6 +62,12 @@ fun ScenariosScreen(
                     }
                 },
                 actions = {
+                    IconButton(
+                        onClick = onOpenLeaderboard,
+                        modifier = Modifier.testTag("nav_leaderboard_button")
+                    ) {
+                        Icon(Icons.Default.Leaderboard, contentDescription = "Team Leaderboard", tint = Color(0xFFF59E0B))
+                    }
                     IconButton(
                         onClick = onOpenHistory,
                         modifier = Modifier.testTag("nav_history_button")
@@ -101,6 +108,74 @@ fun ScenariosScreen(
                 .fillMaxSize()
                 .padding(paddingValues)
         ) {
+            // Quick Leaderboard & Standings Strip
+            Surface(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(horizontal = 16.dp, vertical = 6.dp)
+                    .clip(RoundedCornerShape(12.dp))
+                    .clickable { onOpenLeaderboard() }
+                    .testTag("scenarios_leaderboard_banner"),
+                color = Slate900,
+                tonalElevation = 2.dp
+            ) {
+                Row(
+                    modifier = Modifier.padding(horizontal = 12.dp, vertical = 8.dp),
+                    verticalAlignment = Alignment.CenterVertically,
+                    horizontalArrangement = Arrangement.SpaceBetween
+                ) {
+                    Row(
+                        verticalAlignment = Alignment.CenterVertically,
+                        horizontalArrangement = Arrangement.spacedBy(8.dp)
+                    ) {
+                        Box(
+                            modifier = Modifier
+                                .size(28.dp)
+                                .clip(CircleShape)
+                                .background(Color(0xFFF59E0B).copy(alpha = 0.2f)),
+                            contentAlignment = Alignment.Center
+                        ) {
+                            Icon(
+                                imageVector = Icons.Default.EmojiEvents,
+                                contentDescription = null,
+                                tint = Color(0xFFF59E0B),
+                                modifier = Modifier.size(16.dp)
+                            )
+                        }
+                        Column {
+                            Text(
+                                text = "Spectrum QA Leaderboard",
+                                fontWeight = FontWeight.Bold,
+                                fontSize = 12.sp,
+                                color = Color.White
+                            )
+                            Text(
+                                text = "View Top Agent Scores, Trophies & Standings",
+                                fontSize = 10.sp,
+                                color = Slate400
+                            )
+                        }
+                    }
+                    Row(
+                        verticalAlignment = Alignment.CenterVertically,
+                        horizontalArrangement = Arrangement.spacedBy(4.dp)
+                    ) {
+                        Text(
+                            text = "View Standings",
+                            fontSize = 11.sp,
+                            fontWeight = FontWeight.Bold,
+                            color = CyanGlow
+                        )
+                        Icon(
+                            imageVector = Icons.Default.ChevronRight,
+                            contentDescription = null,
+                            tint = CyanGlow,
+                            modifier = Modifier.size(16.dp)
+                        )
+                    }
+                }
+            }
+
             // Search Bar
             OutlinedTextField(
                 value = filterState.searchQuery,

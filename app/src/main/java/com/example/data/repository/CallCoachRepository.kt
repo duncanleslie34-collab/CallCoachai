@@ -329,6 +329,109 @@ class CallCoachRepository(
             )
         )
 
+        // Session 4: Jordan Smith (Turnaround session)
+        sessionDao.insertSession(
+            CallSessionEntity(
+                traineeId = "trainee_2",
+                traineeName = "Jordan Smith",
+                scenarioId = "scen_sales_retention_1",
+                scenarioTitle = "Spectrum Mobile Unlimited+ Fiber Cross-Sell",
+                category = "SALES_OPPORTUNITY",
+                timestamp = now - (oneDay / 2),
+                durationSeconds = 210,
+                overallScore = 86,
+                letterGrade = "B",
+                outcome = "Bundle Closed Successfully",
+                deescalationScore = 80,
+                empathyScore = 85,
+                toneScore = 88,
+                retentionScore = 90,
+                protocolScore = 87,
+                executiveSummary = "Strong turnaround from earlier attempts. Successfully identified multiple mobile lines eligible for Spectrum One $30/mo discount bundle.",
+                transcriptJson = CallSessionConverter.serializeTranscript(sampleTurns1.take(3)),
+                feedbackDetailsJson = CallSessionConverter.serializeEvaluation(
+                    sampleEval1.copy(
+                        overallScore = 86,
+                        letterGrade = "B",
+                        callOutcome = "Bundle Closed Successfully",
+                        deescalationScore = 80,
+                        empathyScore = 85,
+                        executiveSummary = "Strong turnaround from earlier attempts. Successfully identified multiple mobile lines eligible for Spectrum One $30/mo discount bundle."
+                    )
+                ),
+                managerNotes = "Great recovery after coaching note. Commendable improvement!"
+            )
+        )
+
+        // Session 5: Samira Khan (Top Tier Tech & Wi-Fi Specialist)
+        sessionDao.insertSession(
+            CallSessionEntity(
+                traineeId = "trainee_4",
+                traineeName = "Samira Khan",
+                scenarioId = "scen_4",
+                scenarioTitle = "Spectrum Gig Upgrade & Wi-Fi Pods Solution",
+                category = "SALES_OPPORTUNITY",
+                timestamp = now - (oneDay * 2),
+                durationSeconds = 260,
+                overallScore = 95,
+                letterGrade = "A",
+                outcome = "Resolved & Upgraded",
+                deescalationScore = 94,
+                empathyScore = 96,
+                toneScore = 95,
+                retentionScore = 92,
+                protocolScore = 97,
+                executiveSummary = "Outstanding technical empathy. Masterfully addressed Wi-Fi dead zones in client's upstairs home office, added 2 Spectrum Wi-Fi Pods with zero friction.",
+                transcriptJson = CallSessionConverter.serializeTranscript(sampleTurns1),
+                feedbackDetailsJson = CallSessionConverter.serializeEvaluation(
+                    sampleEval1.copy(
+                        overallScore = 95,
+                        letterGrade = "A",
+                        callOutcome = "Resolved & Upgraded",
+                        deescalationScore = 94,
+                        empathyScore = 96,
+                        toneScore = 95,
+                        executiveSummary = "Outstanding technical empathy. Masterfully addressed Wi-Fi dead zones in client's upstairs home office, added 2 Spectrum Wi-Fi Pods with zero friction."
+                    )
+                ),
+                managerNotes = "Benchmark call for new hire onboarding. Perfect tone and active listening."
+            )
+        )
+
+        // Session 6: Taylor Chen (Billing & Account Care Specialist)
+        sessionDao.insertSession(
+            CallSessionEntity(
+                traineeId = "trainee_3",
+                traineeName = "Taylor Chen",
+                scenarioId = "scen_1",
+                scenarioTitle = "Surprise International Data Surcharge",
+                category = "BILLING_DISPUTE",
+                timestamp = now - (oneDay * 4),
+                durationSeconds = 195,
+                overallScore = 89,
+                letterGrade = "B",
+                outcome = "Retained & Satisfied",
+                deescalationScore = 88,
+                empathyScore = 91,
+                toneScore = 89,
+                retentionScore = 86,
+                protocolScore = 92,
+                executiveSummary = "Taylor effectively dismantled customer's panic about unexpected roaming charges by providing clear account credit breakdown and setting usage alert caps.",
+                transcriptJson = CallSessionConverter.serializeTranscript(sampleTurns1.take(3)),
+                feedbackDetailsJson = CallSessionConverter.serializeEvaluation(
+                    sampleEval1.copy(
+                        overallScore = 89,
+                        letterGrade = "B",
+                        callOutcome = "Retained & Satisfied",
+                        deescalationScore = 88,
+                        empathyScore = 91,
+                        executiveSummary = "Taylor effectively dismantled customer's panic about unexpected roaming charges by providing clear account credit breakdown and setting usage alert caps."
+                    )
+                ),
+                managerNotes = "Excellent billing explanation. Steady and clear cadence."
+            )
+        )
+
         // Prepopulate coaching notes
         coachingDao.insertNote(
             ManagerCoachingNoteEntity(
